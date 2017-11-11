@@ -1,4 +1,6 @@
-﻿using System;
+﻿using P2.Products;
+using P2.Users;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +12,11 @@ namespace P2.Controllers
     {
         public ActionResult Index()
         {
+            ProductsClient productsClient = new ProductsClient();
+            Product [] products = productsClient.GetAll();
+
+            UsersClient usersClient = new UsersClient();
+            User [] users = usersClient.GetAll();
             return View();
         }
 
