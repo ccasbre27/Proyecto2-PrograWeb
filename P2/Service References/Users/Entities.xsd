@@ -11,16 +11,19 @@
       <xs:element minOccurs="0" name="DNI" type="xs:int" />
       <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Type" type="tns:UserType" />
+      <xs:element minOccurs="0" name="UserType" nillable="true" type="tns:UserType" />
+      <xs:element minOccurs="0" name="UserTypeID" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="User" nillable="true" type="tns:User" />
-  <xs:simpleType name="UserType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Admin" />
-      <xs:enumeration value="Normal" />
-    </xs:restriction>
-  </xs:simpleType>
+  <xs:complexType name="UserType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:element name="UserType" nillable="true" type="tns:UserType" />
 </xs:schema>

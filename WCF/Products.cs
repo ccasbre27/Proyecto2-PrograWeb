@@ -9,21 +9,22 @@ namespace WCF
 {
     public class Products : IProducts
     {
-        private List<Product> productsList;
+        P2Context db = null;
 
         public Products()
         {
-            productsList = new List<Product>();
-            productsList.Add(new Product() { Id = 1, Description = Guid.NewGuid().ToString() });
-            productsList.Add(new Product() { Id = 2, Description = Guid.NewGuid().ToString() });
-            productsList.Add(new Product() { Id = 3, Description = Guid.NewGuid().ToString() });
-            productsList.Add(new Product() { Id = 4, Description = Guid.NewGuid().ToString() });
+            db = new P2Context();
         }
 
         #region GetAll
         public List<Product> GetAll()
         {
-            return productsList;
+            //return db.Products.OrderBy(e => e.Id).ToList();
+            var results = 
+                from product in db.Products
+                select product;
+
+            return results.ToList();
         }
         #endregion
 
@@ -35,11 +36,16 @@ namespace WCF
         #endregion
 
         #region Add
-        public Product Add(Product product)
+        public async Task<Product> Add(Product product)
         {
+            // se verifica si el producto a agregar tiene datos
             if (product != null)
             {
-                productsList.Add(product);
+                // se agrega el producto
+                db.Products.Add(product);
+                
+                // se guardan los cambios
+                await db.SaveChangesAsync();
             }
 
             return product;
@@ -47,16 +53,28 @@ namespace WCF
         #endregion
 
         #region Update
-        public Product Update(Product product)
+        public async Task<Product> Update(Product product)
         {
             Product productAux = null;
+
+            // se verifica si el proucto que se recibe no es null
             if (product != null)
             {
+                // se busca el producto
                 productAux = SearchProduct(product.Id);
+
+                // se verifica si se encontró
                 if (productAux != null)
                 {
+                    // se establecen los nuevos valores en las propiedades a excepción del ID que no se puede cambiar
                     productAux.Description = product.Description;
                     productAux.Category = product.Category;
+
+                    // se establece la entidad como modificada para que se apliquen los cambios
+                    db.Entry(productAux).State = System.Data.Entity.EntityState.Modified;
+
+                    // guardamos los cambios
+                    await db.SaveChangesAsync();
                 }
             }
 
@@ -65,22 +83,30 @@ namespace WCF
         #endregion
 
         #region Delete
-        public void Delete(int productId)
+        public async void Delete(int productId)
         {
-            if (productId > 0)
+            // se busca el producto
+            Product productAux = SearchProduct(productId);
+
+            // se verifica si se encontró el producto
+            if (productAux != null)
             {
-                Product product = SearchProduct(productId);
-                if (product != null)
-                {
-                    productsList.Remove(product);
-                }
+                // realizamos un borrado lógico
+                productAux.IsActive = false;
+
+                // se establece la entidad como modificada para que se apliquen los cambios
+                db.Entry(productAux).State = System.Data.Entity.EntityState.Modified;
+
+                // guardamos los cambios
+                await db.SaveChangesAsync();
             }
+            
         }
         #endregion
 
         private Product SearchProduct(int productId)
         {
-            return productsList.Where(c => c.Id == productId).Select(c => c).SingleOrDefault();
+            return db.Products.Where(c => c.Id == productId).Select(c => c).SingleOrDefault();
         }
     }
 }

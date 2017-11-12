@@ -29,5 +29,7 @@ namespace P2.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Entities.Product> Products { get; set; }
     }
 }

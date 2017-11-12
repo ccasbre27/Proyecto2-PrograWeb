@@ -18,12 +18,13 @@ namespace WCF
         Product Get(int productId);
 
         [OperationContract]
-        Product Add(Product product);
+        Task<Product> Add(Product product);
 
         [OperationContract]
-        Product Update(Product product);
+        Task<Product> Update(Product product);
 
         [OperationContract]
         void Delete(int productId);
+
     }
 }

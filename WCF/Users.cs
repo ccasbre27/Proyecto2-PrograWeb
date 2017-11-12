@@ -9,21 +9,21 @@ namespace WCF
 {
     public class Users : IUsers
     {
-        private List<User> usersList;
+        P2Context db = null;
 
         public Users()
         {
-            usersList = new List<User>();
-            usersList.Add(new User() { Id = 1, FullName = Guid.NewGuid().ToString() });
-            usersList.Add(new User() { Id = 2, FullName = Guid.NewGuid().ToString() });
-            usersList.Add(new User() { Id = 3, FullName = Guid.NewGuid().ToString() });
-            usersList.Add(new User() { Id = 4, FullName = Guid.NewGuid().ToString() });
+            db = new P2Context();
         }
 
         #region GetAll
         public List<User> GetAll()
         {
-            return usersList;
+            var results =
+                from user in db.Users
+                select user;
+
+            return results.ToList();
         }
         #endregion
 
@@ -35,11 +35,16 @@ namespace WCF
         #endregion
 
         #region Add
-        public User Add(User user)
+        public async Task<User> Add(User user)
         {
+            // se verifica si el usuario a agregar tiene datos
             if (user != null)
             {
-                usersList.Add(user);
+                // se agrega el usuario
+                db.Users.Add(user);
+
+                // salvamos los datos
+                await db.SaveChangesAsync();
             }
 
             return user;
@@ -47,17 +52,30 @@ namespace WCF
         #endregion
 
         #region Update
-        public User Update(User user)
+        public async Task<User> Update(User user)
         {
             User userAux = null;
+
+            // se verifica si el usuario que se recibe no es null
             if (user != null)
             {
+                // se busca el usuario
                 userAux = SearchUser(user.Id);
+
+                // se verifica si se encontró el usuario
                 if (userAux != null)
                 {
+                    // se establecen los nuevos valores a excepción del ID que no se puede cambiar
                     userAux.FullName = user.FullName;
                     userAux.DNI = user.DNI;
-                    userAux.Type = user.Type;
+                    userAux.UserTypeID = user.UserTypeID;
+                    userAux.IsActive = user.IsActive;
+
+                    // se establece la entidad como modificada para que se apliquen los cambios
+                    db.Entry(userAux).State = System.Data.Entity.EntityState.Modified;
+
+                    // guardamos los cambios
+                    await db.SaveChangesAsync();
                 }
             }
 
@@ -66,22 +84,36 @@ namespace WCF
         #endregion
 
         #region Delete
-        public void Delete(int userId)
+        public async void Delete(int userId)
         {
-            if (userId > 0)
+            
+            // se busca el usuario
+            User userAux = SearchUser(userId);
+
+            // se verifica si se encontró el usuario
+            if (userAux != null)
             {
-                User user = SearchUser(userId);
-                if (user != null)
-                {
-                    usersList.Remove(user);
-                }
+                // realizamos un borrado lógico
+                userAux.IsActive = false;
+
+                // se establece la entidad como modificada para que se apliquen los cambios
+                db.Entry(userAux).State = System.Data.Entity.EntityState.Modified;
+
+                // guardamos los cambios
+                await db.SaveChangesAsync();
             }
+            
         }
         #endregion
 
         private User SearchUser(int userId)
         {
-            return usersList.Where(c => c.Id == userId).Select(c => c).SingleOrDefault();
+            var result =
+                from user in db.Users
+                where user.Id == userId
+                select user;
+
+            return result as User;
         }
     }
 }

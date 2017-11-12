@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -19,12 +20,30 @@ namespace Entities
         [Key]
         [DataMember]
         public int Id { get; set; }
-
+        
+        [DisplayName("Descripción")]
+        [Required]
         [DataMember]
         public string Description { get; set; }
 
+        [DisplayName("Precio")]
+        [Required]
+        [DataMember]
+        public decimal Price { get; set; }
+
+        [DisplayName("Rentabilidad del Producto")]
+        [Required]
+        [RegularExpression(@"[1-5]", ErrorMessage = "Rango incorrecto")]
         [DataMember]
         public int Category { get; set; }
-        
+
+        [DataMember]
+        public bool IsActive { get; set; }
+
+        public Product()
+        {
+            IsActive = true;
+        }
+
     }
 }

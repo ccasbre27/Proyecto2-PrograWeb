@@ -1,10 +1,10 @@
-﻿using Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using Entities;
 
 namespace WCF
 {
@@ -15,13 +15,13 @@ namespace WCF
         List<User> GetAll();
 
         [OperationContract]
-        User Get(int userId);
+        User Get(int productId);
 
         [OperationContract]
-        User Add(User user);
+        Task<User> Add(User user);
 
         [OperationContract]
-        User Update(User user);
+        Task<User> Update(User user);
 
         [OperationContract]
         void Delete(int userId);

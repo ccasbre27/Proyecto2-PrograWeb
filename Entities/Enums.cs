@@ -6,9 +6,5 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public enum UserType
-    {
-        Admin,
-        Normal
-    }
+   
 }

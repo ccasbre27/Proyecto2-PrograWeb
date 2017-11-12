@@ -32,10 +32,16 @@ namespace P2.Users {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsActiveField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private P2.Users.UserType TypeField;
+        private P2.Users.UserType UserTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserTypeIDField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -87,6 +93,19 @@ namespace P2.Users {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsActive {
+            get {
+                return this.IsActiveField;
+            }
+            set {
+                if ((this.IsActiveField.Equals(value) != true)) {
+                    this.IsActiveField = value;
+                    this.RaisePropertyChanged("IsActive");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Password {
             get {
                 return this.PasswordField;
@@ -100,14 +119,27 @@ namespace P2.Users {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public P2.Users.UserType Type {
+        public P2.Users.UserType UserType {
             get {
-                return this.TypeField;
+                return this.UserTypeField;
             }
             set {
-                if ((this.TypeField.Equals(value) != true)) {
-                    this.TypeField = value;
-                    this.RaisePropertyChanged("Type");
+                if ((object.ReferenceEquals(this.UserTypeField, value) != true)) {
+                    this.UserTypeField = value;
+                    this.RaisePropertyChanged("UserType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserTypeID {
+            get {
+                return this.UserTypeIDField;
+            }
+            set {
+                if ((this.UserTypeIDField.Equals(value) != true)) {
+                    this.UserTypeIDField = value;
+                    this.RaisePropertyChanged("UserTypeID");
                 }
             }
         }
@@ -122,15 +154,81 @@ namespace P2.Users {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="UserType", Namespace="http://schemas.datacontract.org/2004/07/Entities")]
-    public enum UserType : int {
+    [System.SerializableAttribute()]
+    public partial class UserType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Admin = 0,
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Normal = 1,
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsActiveField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsActive {
+            get {
+                return this.IsActiveField;
+            }
+            set {
+                if ((this.IsActiveField.Equals(value) != true)) {
+                    this.IsActiveField = value;
+                    this.RaisePropertyChanged("IsActive");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -144,10 +242,10 @@ namespace P2.Users {
         System.Threading.Tasks.Task<P2.Users.User[]> GetAllAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsers/Get", ReplyAction="http://tempuri.org/IUsers/GetResponse")]
-        P2.Users.User Get(int userId);
+        P2.Users.User Get(int productId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsers/Get", ReplyAction="http://tempuri.org/IUsers/GetResponse")]
-        System.Threading.Tasks.Task<P2.Users.User> GetAsync(int userId);
+        System.Threading.Tasks.Task<P2.Users.User> GetAsync(int productId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsers/Add", ReplyAction="http://tempuri.org/IUsers/AddResponse")]
         P2.Users.User Add(P2.Users.User user);
@@ -203,12 +301,12 @@ namespace P2.Users {
             return base.Channel.GetAllAsync();
         }
         
-        public P2.Users.User Get(int userId) {
-            return base.Channel.Get(userId);
+        public P2.Users.User Get(int productId) {
+            return base.Channel.Get(productId);
         }
         
-        public System.Threading.Tasks.Task<P2.Users.User> GetAsync(int userId) {
-            return base.Channel.GetAsync(userId);
+        public System.Threading.Tasks.Task<P2.Users.User> GetAsync(int productId) {
+            return base.Channel.GetAsync(productId);
         }
         
         public P2.Users.User Add(P2.Users.User user) {
