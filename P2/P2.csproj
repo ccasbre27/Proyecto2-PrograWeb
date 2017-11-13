@@ -212,8 +212,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Properties\DataSources\Entities.Product.datasource" />
-    <Content Include="Properties\DataSources\Entities.User.datasource" />
     <Content Include="Properties\DataSources\Entities.UserType.datasource" />
+    <Content Include="Properties\DataSources\Entities.User.datasource" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -232,15 +232,25 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\Users\configuration91.svcinfo" />
-    <None Include="Service References\Users\configuration.svcinfo" />
-    <None Include="Service References\Users\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
+    <None Include="Service References\Users\Entities.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Users\service.wsdl" />
+    <None Include="Service References\Users\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Users\service1.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="Service References\UserTypes\configuration91.svcinfo" />
     <None Include="Service References\UserTypes\configuration.svcinfo" />
     <None Include="Service References\UserTypes\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\Users\configuration91.svcinfo" />
+    <None Include="Service References\Users\configuration.svcinfo" />
+    <None Include="Service References\Users\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -279,16 +289,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\Products\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\Users\Entities.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\Users\service.wsdl" />
-    <None Include="Service References\Users\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\Users\service1.xsd">
       <SubType>Designer</SubType>
     </None>
     <Content Include="Views\User\Create.cshtml" />

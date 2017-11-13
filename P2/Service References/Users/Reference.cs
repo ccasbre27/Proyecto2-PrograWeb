@@ -22,10 +22,10 @@ namespace P2.Users {
         System.Threading.Tasks.Task<Entities.User[]> GetAllAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsers/Get", ReplyAction="http://tempuri.org/IUsers/GetResponse")]
-        Entities.User Get(int productId);
+        Entities.User Get(int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsers/Get", ReplyAction="http://tempuri.org/IUsers/GetResponse")]
-        System.Threading.Tasks.Task<Entities.User> GetAsync(int productId);
+        System.Threading.Tasks.Task<Entities.User> GetAsync(int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsers/Add", ReplyAction="http://tempuri.org/IUsers/AddResponse")]
         Entities.User Add(Entities.User user);
@@ -81,12 +81,12 @@ namespace P2.Users {
             return base.Channel.GetAllAsync();
         }
         
-        public Entities.User Get(int productId) {
-            return base.Channel.Get(productId);
+        public Entities.User Get(int userId) {
+            return base.Channel.Get(userId);
         }
         
-        public System.Threading.Tasks.Task<Entities.User> GetAsync(int productId) {
-            return base.Channel.GetAsync(productId);
+        public System.Threading.Tasks.Task<Entities.User> GetAsync(int userId) {
+            return base.Channel.GetAsync(userId);
         }
         
         public Entities.User Add(Entities.User user) {

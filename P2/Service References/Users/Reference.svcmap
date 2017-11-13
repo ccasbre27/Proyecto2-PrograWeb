@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="431f2b5b-95e7-407f-a741-462f68a04f32" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="6f8a43a8-4fb4-4b5f-b195-ab1bba5124bc" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,10 +22,10 @@
     <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/WCF/Users/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="85913d3d-8d5e-4b2c-b015-f62c9bab267d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCF/Users/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="4ed786f6-d391-4daf-b236-be12e0506ba4" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCF/Users/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="2541933e-07e9-4e66-82c7-75963d7bc7b8" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCF/Users/mex" />
-    <MetadataFile FileName="Entities.xsd" MetadataType="Schema" ID="fdaf581e-b8e1-449a-9411-51f4449f58d4" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCF/Users/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="bb8f2af8-0fde-443e-9447-807f005e8f9a" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCF/Users/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="b6412cf6-07b0-4a31-b939-e41dc226d6c7" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCF/Users/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="afa9b4b8-6f7e-425f-ae75-65198f4e93c3" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCF/Users/mex" />
+    <MetadataFile FileName="Entities.xsd" MetadataType="Schema" ID="5f53f1ab-80bb-4eca-8491-6737c8d00781" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WCF/Users/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

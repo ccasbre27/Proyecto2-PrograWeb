@@ -28,9 +28,9 @@ namespace WCF
         #endregion
 
         #region Get
-        public User Get(int productId)
+        public User Get(int userId)
         {
-            return SearchUser(productId);
+            return SearchUser(userId);
         }
         #endregion
 
@@ -105,9 +105,9 @@ namespace WCF
         private User SearchUser(int userId)
         {
             var result =
-                from user in db.Users
+                (from user in db.Users
                 where user.Id == userId
-                select user;
+                select user).FirstOrDefault();
 
             return result as User;
         }

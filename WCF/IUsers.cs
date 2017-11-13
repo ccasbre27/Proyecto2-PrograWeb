@@ -15,7 +15,7 @@ namespace WCF
         List<User> GetAll();
 
         [OperationContract]
-        User Get(int productId);
+        User Get(int userId);
 
         [OperationContract]
         Task<User> Add(User user);

@@ -114,7 +114,12 @@ namespace WCF
 
         private Product SearchProduct(int productId)
         {
-            return db.Products.Where(c => c.Id == productId).Select(c => c).SingleOrDefault();
+            var result =
+               (from product in db.Products
+                where product.Id == productId
+                select product).FirstOrDefault();
+
+            return result;
         }
     }
 }
