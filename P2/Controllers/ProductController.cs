@@ -104,39 +104,33 @@ namespace P2.Controllers
             return View(product);
         }
 
-        //// GET: product/delete/5
-        //public async task<actionresult> delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new httpstatuscoderesult(httpstatuscode.badrequest);
-        //    }
-        //    product product = await db.products.findasync(id);
-        //    if (product == null)
-        //    {
-        //        return httpnotfound();
-        //    }
-        //    return view(product);
-        //}
+        public async Task<ActionResult> Delete(int id)
+        {
+            ProductsClient api = new ProductsClient();
 
-        //// post: product/delete/5
-        //[httppost, actionname("delete")]
-        //[validateantiforgerytoken]
-        //public async task<actionresult> deleteconfirmed(int id)
-        //{
-        //    product product = await db.products.findasync(id);
-        //    db.products.remove(product);
-        //    await db.savechangesasync();
-        //    return redirecttoaction("index");
-        //}
+            Product product = api.Get(id);
 
-        //protected override void dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.dispose();
-        //    }
-        //    base.dispose(disposing);
-        //}
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(product);
+        }
+
+        // Post: Product/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(int id)
+        {
+            ProductsClient api = new ProductsClient();
+
+            await api.DeleteAsync(id);
+
+            return RedirectToAction("Index");
+        }
+
+        
+
     }
 }
