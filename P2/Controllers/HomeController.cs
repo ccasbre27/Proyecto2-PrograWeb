@@ -12,6 +12,7 @@ namespace P2.Controllers
     {
         public ActionResult Index()
         {
+            
             return View();
         }
         

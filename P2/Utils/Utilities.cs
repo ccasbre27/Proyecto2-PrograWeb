@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -8,8 +9,25 @@ namespace P2.Utils
 {
     public class Utilities
     {
+        private static User _user = new User();
 
-        public static Entities.User LoggedUser = new Entities.User();
+        public static User LoggedUser
+        {
+            get
+            {
+                return _user;
+            }
+            set
+            {
+                _user = value;
+            }
+        }
+
+
+        public Utilities()
+        {
+            
+        }
 
         public static T MapClass<T>(Object myobj)
         {

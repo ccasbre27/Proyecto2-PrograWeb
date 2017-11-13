@@ -64,6 +64,10 @@
     <Compile Include="Migrations\201711130026108_Deleted-IsActive.Designer.cs">
       <DependentUpon>201711130026108_Deleted-IsActive.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711130116558_Changed_DataType_UserTypeID.cs" />
+    <Compile Include="Migrations\201711130116558_Changed_DataType_UserTypeID.Designer.cs">
+      <DependentUpon>201711130116558_Changed_DataType_UserTypeID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="P2Context.cs" />
     <Compile Include="Products.cs" />
@@ -86,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711130026108_Deleted-IsActive.resx">
       <DependentUpon>201711130026108_Deleted-IsActive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711130116558_Changed_DataType_UserTypeID.resx">
+      <DependentUpon>201711130116558_Changed_DataType_UserTypeID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -42,7 +42,7 @@ namespace Entities
         [DisplayName("Tipo de Usuario")]
         [Required]
         [DataMember]
-        public int UserTypeID { get; set; }
+        public UserTypeEnum UserTypeID { get; set; }
 
         public User()
         {

@@ -16,7 +16,7 @@ namespace Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         [DataMember]
-        public int Id { get; set; }
+        public UserTypeEnum Id { get; set; }
         
         [DisplayName("Nombre")]
         [Required]

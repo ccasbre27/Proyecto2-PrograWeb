@@ -27,6 +27,7 @@ namespace Entities
         public string Description { get; set; }
 
         [DisplayName("Precio")]
+        [DataType(DataType.Currency)]
         [Required]
         [DataMember]
         public decimal Price { get; set; }

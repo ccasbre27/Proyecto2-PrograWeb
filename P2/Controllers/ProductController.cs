@@ -19,22 +19,27 @@ namespace P2.Controllers
         // GET: Product
         public async Task<ActionResult> Index()
         {
-            ProductsClient productsClient = new ProductsClient();
+            ProductsClient api = new ProductsClient();
 
-            return View(productsClient.GetAll());
+            // BORRAR -**************
+            Utilities.LoggedUser.UserTypeID = UserTypeEnum.Admin;
+
+            /////////////////
+
+            return View(api.GetAll());
         }
 
         // GET: Product/Details/5
-        public async Task<ActionResult> Details(int id)
+        public ActionResult Details(int id)
         {
             if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             
-            ProductsClient productsClient = new ProductsClient();
+            ProductsClient api = new ProductsClient();
 
-            Product product = productsClient.Get(id);
+            Product product = api.Get(id);
 
             if (product == null)
             {
@@ -51,17 +56,15 @@ namespace P2.Controllers
         }
 
         // POST: product/create
-        // para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?linkid=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Product product)
         {
             if (ModelState.IsValid)
             {
-                ProductsClient productsClient = new ProductsClient();
+                ProductsClient api = new ProductsClient();
                 
-                productsClient.Add(product);
+                await api.AddAsync(product);
                 
                 return RedirectToAction("Index");
             }
@@ -69,36 +72,37 @@ namespace P2.Controllers
             return View(product);
         }
 
-        //// GET: product/edit/5
-        //public async task<actionresult> edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new httpstatuscoderesult(httpstatuscode.badrequest);
-        //    }
-        //    product product = await db.products.findasync(id);
-        //    if (product == null)
-        //    {
-        //        return httpnotfound();
-        //    }
-        //    return view(product);
-        //}
+        // GET: product/edit/5
+        public async Task<ActionResult> Edit(int id)
+        {
+            ProductsClient api = new ProductsClient();
 
-        //// POST: product/edit/5
-        //// para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. para obtener 
-        //// más información vea http://go.microsoft.com/fwlink/?linkid=317598.
-        //[httppost]
-        //[validateantiforgerytoken]
-        //public async task<actionresult> edit([bind(include = "id,description,price,category,isactive")] product product)
-        //{
-        //    if (modelstate.isvalid)
-        //    {
-        //        db.entry(product).state = entitystate.modified;
-        //        await db.savechangesasync();
-        //        return redirecttoaction("index");
-        //    }
-        //    return view(product);
-        //}
+            Product product = await api.GetAsync(id);
+
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(product);
+        }
+
+        // Post: Product/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                ProductsClient api = new ProductsClient();
+
+                await api.UpdateAsync(product);
+
+                return RedirectToAction("Index");
+            }
+
+            return View(product);
+        }
 
         //// GET: product/delete/5
         //public async task<actionresult> delete(int? id)

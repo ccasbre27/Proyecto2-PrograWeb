@@ -79,6 +79,7 @@ namespace WCF
                     // se establecen los nuevos valores en las propiedades a excepción del ID que no se puede cambiar
                     productAux.Description = product.Description;
                     productAux.Category = product.Category;
+                    productAux.Price = product.Price;
 
                     // se establece la entidad como modificada para que se apliquen los cambios
                     db.Entry(productAux).State = System.Data.Entity.EntityState.Modified;
