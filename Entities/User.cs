@@ -33,6 +33,7 @@ namespace Entities
         [DisplayName("Clave")]
         [Required]
         [DataMember]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         
         [ForeignKey("UserTypeID")]
