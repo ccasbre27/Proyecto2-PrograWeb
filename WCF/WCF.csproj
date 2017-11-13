@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="IProducts.cs" />
     <Compile Include="IUsers.cs" />
+    <Compile Include="IUserTypes.cs" />
     <Compile Include="Migrations\201711120301121_Initial.cs" />
     <Compile Include="Migrations\201711120301121_Initial.Designer.cs">
       <DependentUpon>201711120301121_Initial.cs</DependentUpon>
@@ -73,6 +74,7 @@
     <Compile Include="Products.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users.cs" />
+    <Compile Include="UserTypes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

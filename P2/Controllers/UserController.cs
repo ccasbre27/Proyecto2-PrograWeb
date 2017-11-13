@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using Entities;
 using P2.Models;
 using P2.Users;
+using P2.UserTypes;
 
 namespace P2.Controllers
 {
@@ -21,6 +22,7 @@ namespace P2.Controllers
         public async Task<ActionResult> Index()
         {
             UsersClient api = new UsersClient();
+            
             return View(await api.GetAllAsync());
         }
 
@@ -39,30 +41,31 @@ namespace P2.Controllers
         //    return View(user);
         //}
 
-        //// GET: User/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.UserTypeID = new SelectList(db.UserTypes, "Id", "Name");
-        //    return View();
-        //}
+        // GET: User/Create
+        public async Task<ActionResult> Create()
+        {
+            ViewBag.UserTypeID = LoadUserTypes();
+            return View();
+        }
 
-        //// POST: User/Create
-        //// Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        //// más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Create([Bind(Include = "Id,DNI,FullName,Password,UserTypeID")] User user)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Users.Add(user);
-        //        await db.SaveChangesAsync();
-        //        return RedirectToAction("Index");
-        //    }
+        // POST: User/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(User user)
+        {
+            if (ModelState.IsValid)
+            {
 
-        //    ViewBag.UserTypeID = new SelectList(db.UserTypes, "Id", "Name", user.UserTypeID);
-        //    return View(user);
-        //}
+                UsersClient api = new UsersClient();
+
+                await api.AddAsync(user);
+
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.UserTypeID = LoadUserTypes();
+            return View(user);
+        }
 
         //// GET: User/Edit/5
         //public async Task<ActionResult> Edit(int? id)
@@ -131,5 +134,14 @@ namespace P2.Controllers
         //    }
         //    base.Dispose(disposing);
         //}
+
+        private SelectList LoadUserTypes()
+        {
+            UserTypesClient api = new UserTypesClient();
+
+            UserType[] userTypes = api.GetAll();
+
+            return new SelectList(userTypes, "Id", "Name");
+        }
     }
 }

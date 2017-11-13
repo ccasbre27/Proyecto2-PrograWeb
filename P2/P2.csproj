@@ -191,6 +191,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\UserTypes\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\Utilities.cs" />
   </ItemGroup>
@@ -208,6 +213,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Properties\DataSources\Entities.Product.datasource" />
     <Content Include="Properties\DataSources\Entities.User.datasource" />
+    <Content Include="Properties\DataSources\Entities.UserType.datasource" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -229,6 +235,12 @@
     <None Include="Service References\Users\configuration91.svcinfo" />
     <None Include="Service References\Users\configuration.svcinfo" />
     <None Include="Service References\Users\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\UserTypes\configuration91.svcinfo" />
+    <None Include="Service References\UserTypes\configuration.svcinfo" />
+    <None Include="Service References\UserTypes\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -284,6 +296,16 @@
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <None Include="Service References\UserTypes\Entities.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserTypes\service.wsdl" />
+    <None Include="Service References\UserTypes\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserTypes\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -307,6 +329,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\Products\" />
     <WCFMetadataStorage Include="Service References\Users\" />
+    <WCFMetadataStorage Include="Service References\UserTypes\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
