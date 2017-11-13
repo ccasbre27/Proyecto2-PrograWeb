@@ -28,27 +28,7 @@ namespace P2.Controllers
 
             return View(api.GetAll());
         }
-
-        // GET: Product/Details/5
-        public ActionResult Details(int id)
-        {
-            if (id == 0)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            
-            ProductsClient api = new ProductsClient();
-
-            Product product = api.Get(id);
-
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            
-            return View(product);
-        }
-
+        
         // get: Product/Create
         public ActionResult Create()
         {

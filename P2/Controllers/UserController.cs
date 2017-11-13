@@ -26,21 +26,6 @@ namespace P2.Controllers
             return View(await api.GetAllAsync());
         }
 
-        //// GET: User/Details/5
-        //public async Task<ActionResult> Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    User user = await db.Users.FindAsync(id);
-        //    if (user == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(user);
-        //}
-
         // GET: User/Create
         public async Task<ActionResult> Create()
         {
@@ -72,8 +57,7 @@ namespace P2.Controllers
         {
             UsersClient api = new UsersClient();
 
-            //User user = await api.GetAsync(id);
-            User user =  api.Get(id);
+            User user = await api.GetAsync(id);
 
             if (user == null)
             {
@@ -104,41 +88,32 @@ namespace P2.Controllers
             return View(user);
         }
 
-        //// GET: User/Delete/5
-        //public async Task<ActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    User user = await db.Users.FindAsync(id);
-        //    if (user == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(user);
-        //}
+        // GET: User/Delete/5
+        public async Task<ActionResult> Delete(int id)
+        {
+            UsersClient api = new UsersClient();
 
-        //// POST: User/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> DeleteConfirmed(int id)
-        //{
-        //    User user = await db.Users.FindAsync(id);
-        //    db.Users.Remove(user);
-        //    await db.SaveChangesAsync();
-        //    return RedirectToAction("Index");
-        //}
+            User user = await api.GetAsync(id);
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
 
+            return View(user);
+        }
+
+        // POST: User/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(int id)
+        {
+            UsersClient api = new UsersClient();
+            await api.DeleteAsync(id);
+
+            return RedirectToAction("Index");
+        }
+        
         private SelectList LoadUserTypes()
         {
             UserTypesClient api = new UserTypesClient();
