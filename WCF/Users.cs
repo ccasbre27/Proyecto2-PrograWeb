@@ -69,7 +69,6 @@ namespace WCF
                     userAux.FullName = user.FullName;
                     userAux.DNI = user.DNI;
                     userAux.UserTypeID = user.UserTypeID;
-                    userAux.IsActive = user.IsActive;
 
                     // se establece la entidad como modificada para que se apliquen los cambios
                     db.Entry(userAux).State = System.Data.Entity.EntityState.Modified;
@@ -93,11 +92,8 @@ namespace WCF
             // se verifica si se encontró el usuario
             if (userAux != null)
             {
-                // realizamos un borrado lógico
-                userAux.IsActive = false;
-
                 // se establece la entidad como modificada para que se apliquen los cambios
-                db.Entry(userAux).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(userAux).State = System.Data.Entity.EntityState.Deleted;
 
                 // guardamos los cambios
                 await db.SaveChangesAsync();

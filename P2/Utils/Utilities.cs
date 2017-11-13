@@ -8,6 +8,9 @@ namespace P2.Utils
 {
     public class Utilities
     {
+
+        public static Entities.User LoggedUser = new Entities.User();
+
         public static T MapClass<T>(Object myobj)
         {
             Type objectType = myobj.GetType();

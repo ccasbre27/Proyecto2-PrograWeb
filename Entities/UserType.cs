@@ -23,7 +23,5 @@ namespace Entities
         [DataMember]
         public string Name { get; set; }
 
-        [DataMember]
-        public bool IsActive { get; set; }
     }
 }

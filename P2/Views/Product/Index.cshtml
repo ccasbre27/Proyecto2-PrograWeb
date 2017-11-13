@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Entities.Product>
+﻿@using P2.Utils;
+@using Entities;
+@model IEnumerable<Entities.Product>
 
 @{
     ViewBag.Title = "Index";
@@ -22,7 +24,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.Category)
             </th>
-            <th></th>
+
+            @{
+                if (Utilities.LoggedUser.UserTypeID == Convert.ToInt32(UserTypeEnum.Admin))
+                {
+                    <th>
+                       
+                    </th>
+                }
+            }
         </tr>
 
         @foreach (var item in Model)
@@ -37,10 +47,20 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Category)
                 </td>
+               
+                @{
                 <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+                    @if (Utilities.LoggedUser.UserTypeID == Convert.ToInt32(UserTypeEnum.Admin))
+                    {
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Id }) 
+                        
+                        <label>|</label>   
+
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+                    }
+                            
                 </td>
+                }
             </tr>
         }
 

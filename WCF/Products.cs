@@ -19,12 +19,22 @@ namespace WCF
         #region GetAll
         public List<Product> GetAll()
         {
-            //return db.Products.OrderBy(e => e.Id).ToList();
-            var results = 
+            try
+            {
+                 var results = 
                 from product in db.Products
                 select product;
 
-            return results.ToList();
+                return results.ToList();
+            }
+            catch (Exception e)
+            {
+
+               
+            }
+
+            return new List<Product>();
+
         }
         #endregion
 
@@ -91,11 +101,8 @@ namespace WCF
             // se verifica si se encontró el producto
             if (productAux != null)
             {
-                // realizamos un borrado lógico
-                productAux.IsActive = false;
-
                 // se establece la entidad como modificada para que se apliquen los cambios
-                db.Entry(productAux).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(productAux).State = System.Data.Entity.EntityState.Deleted;
 
                 // guardamos los cambios
                 await db.SaveChangesAsync();

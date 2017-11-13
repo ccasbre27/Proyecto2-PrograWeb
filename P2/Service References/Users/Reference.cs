@@ -9,255 +9,35 @@
 //------------------------------------------------------------------------------
 
 namespace P2.Users {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/Entities")]
-    [System.SerializableAttribute()]
-    public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int DNIField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FullNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool IsActiveField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PasswordField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private P2.Users.UserType UserTypeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int UserTypeIDField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int DNI {
-            get {
-                return this.DNIField;
-            }
-            set {
-                if ((this.DNIField.Equals(value) != true)) {
-                    this.DNIField = value;
-                    this.RaisePropertyChanged("DNI");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FullName {
-            get {
-                return this.FullNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
-                    this.FullNameField = value;
-                    this.RaisePropertyChanged("FullName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsActive {
-            get {
-                return this.IsActiveField;
-            }
-            set {
-                if ((this.IsActiveField.Equals(value) != true)) {
-                    this.IsActiveField = value;
-                    this.RaisePropertyChanged("IsActive");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Password {
-            get {
-                return this.PasswordField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
-                    this.PasswordField = value;
-                    this.RaisePropertyChanged("Password");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public P2.Users.UserType UserType {
-            get {
-                return this.UserTypeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserTypeField, value) != true)) {
-                    this.UserTypeField = value;
-                    this.RaisePropertyChanged("UserType");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int UserTypeID {
-            get {
-                return this.UserTypeIDField;
-            }
-            set {
-                if ((this.UserTypeIDField.Equals(value) != true)) {
-                    this.UserTypeIDField = value;
-                    this.RaisePropertyChanged("UserTypeID");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="UserType", Namespace="http://schemas.datacontract.org/2004/07/Entities")]
-    [System.SerializableAttribute()]
-    public partial class UserType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool IsActiveField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsActive {
-            get {
-                return this.IsActiveField;
-            }
-            set {
-                if ((this.IsActiveField.Equals(value) != true)) {
-                    this.IsActiveField = value;
-                    this.RaisePropertyChanged("IsActive");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Users.IUsers")]
     public interface IUsers {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsers/GetAll", ReplyAction="http://tempuri.org/IUsers/GetAllResponse")]
-        P2.Users.User[] GetAll();
+        Entities.User[] GetAll();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsers/GetAll", ReplyAction="http://tempuri.org/IUsers/GetAllResponse")]
-        System.Threading.Tasks.Task<P2.Users.User[]> GetAllAsync();
+        System.Threading.Tasks.Task<Entities.User[]> GetAllAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsers/Get", ReplyAction="http://tempuri.org/IUsers/GetResponse")]
-        P2.Users.User Get(int productId);
+        Entities.User Get(int productId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsers/Get", ReplyAction="http://tempuri.org/IUsers/GetResponse")]
-        System.Threading.Tasks.Task<P2.Users.User> GetAsync(int productId);
+        System.Threading.Tasks.Task<Entities.User> GetAsync(int productId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsers/Add", ReplyAction="http://tempuri.org/IUsers/AddResponse")]
-        P2.Users.User Add(P2.Users.User user);
+        Entities.User Add(Entities.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsers/Add", ReplyAction="http://tempuri.org/IUsers/AddResponse")]
-        System.Threading.Tasks.Task<P2.Users.User> AddAsync(P2.Users.User user);
+        System.Threading.Tasks.Task<Entities.User> AddAsync(Entities.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsers/Update", ReplyAction="http://tempuri.org/IUsers/UpdateResponse")]
-        P2.Users.User Update(P2.Users.User user);
+        Entities.User Update(Entities.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsers/Update", ReplyAction="http://tempuri.org/IUsers/UpdateResponse")]
-        System.Threading.Tasks.Task<P2.Users.User> UpdateAsync(P2.Users.User user);
+        System.Threading.Tasks.Task<Entities.User> UpdateAsync(Entities.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsers/Delete", ReplyAction="http://tempuri.org/IUsers/DeleteResponse")]
         void Delete(int userId);
@@ -293,35 +73,35 @@ namespace P2.Users {
                 base(binding, remoteAddress) {
         }
         
-        public P2.Users.User[] GetAll() {
+        public Entities.User[] GetAll() {
             return base.Channel.GetAll();
         }
         
-        public System.Threading.Tasks.Task<P2.Users.User[]> GetAllAsync() {
+        public System.Threading.Tasks.Task<Entities.User[]> GetAllAsync() {
             return base.Channel.GetAllAsync();
         }
         
-        public P2.Users.User Get(int productId) {
+        public Entities.User Get(int productId) {
             return base.Channel.Get(productId);
         }
         
-        public System.Threading.Tasks.Task<P2.Users.User> GetAsync(int productId) {
+        public System.Threading.Tasks.Task<Entities.User> GetAsync(int productId) {
             return base.Channel.GetAsync(productId);
         }
         
-        public P2.Users.User Add(P2.Users.User user) {
+        public Entities.User Add(Entities.User user) {
             return base.Channel.Add(user);
         }
         
-        public System.Threading.Tasks.Task<P2.Users.User> AddAsync(P2.Users.User user) {
+        public System.Threading.Tasks.Task<Entities.User> AddAsync(Entities.User user) {
             return base.Channel.AddAsync(user);
         }
         
-        public P2.Users.User Update(P2.Users.User user) {
+        public Entities.User Update(Entities.User user) {
             return base.Channel.Update(user);
         }
         
-        public System.Threading.Tasks.Task<P2.Users.User> UpdateAsync(P2.Users.User user) {
+        public System.Threading.Tasks.Task<Entities.User> UpdateAsync(Entities.User user) {
             return base.Channel.UpdateAsync(user);
         }
         

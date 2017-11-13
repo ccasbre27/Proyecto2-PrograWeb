@@ -21,57 +21,55 @@ namespace P2.Controllers
         {
             ProductsClient productsClient = new ProductsClient();
 
-            List<Entities.Product> finalResults = new List<Entities.Product>();
-            
-            P2.Products.Product [] productsAPI = productsClient.GetAll();
-
-            foreach (P2.Products.Product item in productsAPI)
-            {
-                finalResults.Add(Utilities.MapClass<Entities.Product>(item));
-            }
-
-            return View(finalResults);
+            return View(productsClient.GetAll());
         }
 
-        //// get: product/details/5
-        //public async task<actionresult> details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new httpstatuscoderesult(httpstatuscode.badrequest);
-        //    }
-        //    product product = await db.products.findasync(id);
-        //    if (product == null)
-        //    {
-        //        return httpnotfound();
-        //    }
-        //    return view(product);
-        //}
+        // GET: Product/Details/5
+        public async Task<ActionResult> Details(int id)
+        {
+            if (id == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            
+            ProductsClient productsClient = new ProductsClient();
 
-        //// get: product/create
-        //public actionresult create()
-        //{
-        //    return view();
-        //}
+            Product product = productsClient.Get(id);
 
-        //// post: product/create
-        //// para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. para obtener 
-        //// más información vea http://go.microsoft.com/fwlink/?linkid=317598.
-        //[httppost]
-        //[validateantiforgerytoken]
-        //public async task<actionresult> create([bind(include = "id,description,price,category,isactive")] product product)
-        //{
-        //    if (modelstate.isvalid)
-        //    {
-        //        db.products.add(product);
-        //        await db.savechangesasync();
-        //        return redirecttoaction("index");
-        //    }
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            
+            return View(product);
+        }
 
-        //    return view(product);
-        //}
+        // get: Product/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
 
-        //// get: product/edit/5
+        // POST: product/create
+        // para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. para obtener 
+        // más información vea http://go.microsoft.com/fwlink/?linkid=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                ProductsClient productsClient = new ProductsClient();
+                
+                productsClient.Add(product);
+                
+                return RedirectToAction("Index");
+            }
+
+            return View(product);
+        }
+
+        //// GET: product/edit/5
         //public async task<actionresult> edit(int? id)
         //{
         //    if (id == null)
@@ -86,7 +84,7 @@ namespace P2.Controllers
         //    return view(product);
         //}
 
-        //// post: product/edit/5
+        //// POST: product/edit/5
         //// para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. para obtener 
         //// más información vea http://go.microsoft.com/fwlink/?linkid=317598.
         //[httppost]
@@ -102,7 +100,7 @@ namespace P2.Controllers
         //    return view(product);
         //}
 
-        //// get: product/delete/5
+        //// GET: product/delete/5
         //public async task<actionresult> delete(int? id)
         //{
         //    if (id == null)

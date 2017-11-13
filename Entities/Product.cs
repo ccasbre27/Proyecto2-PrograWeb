@@ -37,12 +37,8 @@ namespace Entities
         [DataMember]
         public int Category { get; set; }
 
-        [DataMember]
-        public bool IsActive { get; set; }
-
         public Product()
         {
-            IsActive = true;
         }
 
     }

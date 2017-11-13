@@ -44,12 +44,8 @@ namespace Entities
         [DataMember]
         public int UserTypeID { get; set; }
 
-        [DataMember]
-        public bool IsActive { get; set; }
-
         public User()
         {
-            IsActive = true;
         }
     }
     

@@ -60,6 +60,10 @@
     <Compile Include="Migrations\201711120301121_Initial.Designer.cs">
       <DependentUpon>201711120301121_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711130026108_Deleted-IsActive.cs" />
+    <Compile Include="Migrations\201711130026108_Deleted-IsActive.Designer.cs">
+      <DependentUpon>201711130026108_Deleted-IsActive.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="P2Context.cs" />
     <Compile Include="Products.cs" />
@@ -79,6 +83,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201711120301121_Initial.resx">
       <DependentUpon>201711120301121_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711130026108_Deleted-IsActive.resx">
+      <DependentUpon>201711130026108_Deleted-IsActive.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
