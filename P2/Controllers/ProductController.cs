@@ -21,11 +21,6 @@ namespace P2.Controllers
         {
             ProductsClient api = new ProductsClient();
 
-            // BORRAR -**************
-            Utilities.LoggedUser.UserTypeID = UserTypeEnum.Admin;
-
-            /////////////////
-
             return View(api.GetAll());
         }
         

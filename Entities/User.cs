@@ -47,6 +47,7 @@ namespace Entities
 
         public User()
         {
+            UserTypeID = UserTypeEnum.User;
         }
     }
     

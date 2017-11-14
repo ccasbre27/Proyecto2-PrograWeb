@@ -3,23 +3,24 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 
 namespace P2.Utils
 {
     public class Utilities
     {
-        private static User _user = new User();
-
+      
         public static User LoggedUser
         {
             get
             {
-                return _user;
+                return HttpContext.Current.Session["UserLogged"] as User;
             }
             set
             {
-                _user = value;
+                HttpContext.Current.Session["UserLogged"] = value;
             }
         }
 
@@ -74,6 +75,23 @@ namespace P2.Utils
             }
 
             return Convert.ChangeType(value, t);
+        }
+
+        public static string SHA256Encrypt(string input)
+        {
+            SHA256CryptoServiceProvider provider = new SHA256CryptoServiceProvider();
+
+            byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+            byte[] hashedBytes = provider.ComputeHash(inputBytes);
+
+            StringBuilder output = new StringBuilder();
+
+            for (int i = 0; i < hashedBytes.Length; i++)
+            {
+                output.Append(hashedBytes[i].ToString("x2").ToLower());
+            }
+
+            return output.ToString();
         }
 
     }

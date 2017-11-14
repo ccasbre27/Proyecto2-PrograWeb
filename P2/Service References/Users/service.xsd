@@ -27,31 +27,45 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Add">
+  <xs:element name="CheckUser">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Entities" minOccurs="0" name="user" nillable="true" type="q3:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AddResponse">
+  <xs:element name="CheckUserResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Entities" minOccurs="0" name="AddResult" nillable="true" type="q4:User" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Entities" minOccurs="0" name="CheckUserResult" nillable="true" type="q4:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Update">
+  <xs:element name="Add">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Entities" minOccurs="0" name="user" nillable="true" type="q5:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AddResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Entities" minOccurs="0" name="AddResult" nillable="true" type="q6:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Update">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Entities" minOccurs="0" name="user" nillable="true" type="q7:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="UpdateResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Entities" minOccurs="0" name="UpdateResult" nillable="true" type="q6:User" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Entities" minOccurs="0" name="UpdateResult" nillable="true" type="q8:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

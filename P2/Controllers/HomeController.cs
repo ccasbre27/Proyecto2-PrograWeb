@@ -1,5 +1,7 @@
 ﻿
+using Entities;
 using P2.Users;
+using P2.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +14,6 @@ namespace P2.Controllers
     {
         public ActionResult Index()
         {
-            
             return View();
         }
         

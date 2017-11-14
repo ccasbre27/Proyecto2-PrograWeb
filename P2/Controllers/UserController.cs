@@ -11,6 +11,7 @@ using Entities;
 using P2.Models;
 using P2.Users;
 using P2.UserTypes;
+using P2.Utils;
 
 namespace P2.Controllers
 {
@@ -42,6 +43,8 @@ namespace P2.Controllers
             {
 
                 UsersClient api = new UsersClient();
+
+                user.Password = Utilities.SHA256Encrypt(user.Password);
 
                 await api.AddAsync(user);
 

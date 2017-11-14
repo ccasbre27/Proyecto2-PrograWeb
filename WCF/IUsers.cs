@@ -18,6 +18,9 @@ namespace WCF
         User Get(int userId);
 
         [OperationContract]
+        User CheckUser(User user);
+
+        [OperationContract]
         Task<User> Add(User user);
 
         [OperationContract]

@@ -9,6 +9,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using P2.Models;
+using P2.Users;
+using Entities;
+using P2.Utils;
 
 namespace P2.Controllers
 {
@@ -75,12 +78,25 @@ namespace P2.Controllers
 
             // No cuenta los errores de inicio de sesión para el bloqueo de la cuenta
             // Para permitir que los errores de contraseña desencadenen el bloqueo de la cuenta, cambie a shouldLockout: true
-            //var result = await SignInManager.PasswordSignInAsync(model.DNI, model.Password, model.RememberMe, shouldLockout: false);
-            var result = SignInStatus.Success;
-            switch (result)
+            UsersClient api = new UsersClient();
+            User user = await api.CheckUserAsync(new User()
+            {
+                DNI = model.DNI,
+                Password = Utilities.SHA256Encrypt(model.Password)
+            });
+
+            Microsoft.AspNet.Identity.Owin.SignInStatus status = SignInStatus.Failure;
+
+            if (user != null)
+            {
+                status = SignInStatus.Success;
+                Utilities.LoggedUser = user;
+            }
+            
+            switch (status)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index", "Home");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -92,55 +108,19 @@ namespace P2.Controllers
             }
         }
 
-       
 
-        //
-        // GET: /Account/Register
+
+
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult LogOut()
         {
-            return View();
-        }
+            Session.Clear();
+            Session.Abandon();
+            Session.RemoveAll();
 
-        //
-        // POST: /Account/Register
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                //var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                //var result = await UserManager.CreateAsync(user, model.Password);
-                //if (result.Succeeded)
-                //{
-                //    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-
-                //    // Para obtener más información sobre cómo habilitar la confirmación de cuenta y el restablecimiento de contraseña, visite http://go.microsoft.com/fwlink/?LinkID=320771
-                //    // Enviar correo electrónico con este vínculo
-                //    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                //    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                //    // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
-
-                //    return RedirectToAction("Index", "Home");
-                //}
-                //AddErrors(result);
-                // siguiente línea extra
-                return RedirectToAction("Index", "Home");
-            }
-
-            // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
-            return View(model);
-        }
-
-        //
-        // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
-        {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
 

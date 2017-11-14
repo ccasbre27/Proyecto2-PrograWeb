@@ -34,6 +34,16 @@ namespace WCF
         }
         #endregion
 
+        #region CheckUser
+        public User CheckUser(User user)
+        {
+            return 
+               (from item in db.Users
+                where item.DNI == user.DNI && item.Password == user.Password
+                select item).FirstOrDefault();
+        }
+        #endregion
+
         #region Add
         public async Task<User> Add(User user)
         {
